@@ -4,10 +4,11 @@
                                                 
     In Greek mythology, Epimetheus (/ɛpɪˈmiːθiəs/; Greek: Ἐπιμηθεύς, which might mean "hindsight", literally "afterthinker")
 
-## Receive notifications/alerts on the most recent disclosed CVE's.
-### Be notified and up to date on the latest threats!
+## Receive notifications on the most recent disclosed CVE's...
+#### Be sure you are notified and up to date on the latest threats!
 
-How to use:
+
+##### How to use:
   * `pip install -r requirments.txt` - Install the dependencies.
   * `python main.py initdb` - Initialize the database. (Run this when first using 'Epimetheus').
   * `python main.py scan` - Scan and alert for new vulnerabilities.
