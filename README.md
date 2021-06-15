@@ -4,7 +4,7 @@
                                                 
     In Greek mythology, Epimetheus (/ɛpɪˈmiːθiəs/; Greek: Ἐπιμηθεύς, which might mean "hindsight", literally "afterthinker")
 
-## Receive notifications on the most recent disclosed CVE's...
+## Receive notifications on the most recent disclosed CVE's.
 #### Be sure you are notified and up to date on the latest threats!
 
 
