@@ -7,6 +7,7 @@ import time
 import xml.etree.ElementTree as ET
 from progressbar import ProgressBar, Bar, ETA
 from notifypy import Notify
+import textwrap
 
 from models import db
 from models import CVE
@@ -75,6 +76,8 @@ def main(init):
         notification.send()
 
         cve.update(notified=True)
+        # Sleep, so it doesn't send system notifications to fast.
+        time.sleep(8)
 
     return
 
@@ -87,7 +90,8 @@ def help():
                                                 
     In Greek mythology, Epimetheus (/ɛpɪˈmiːθiəs/; Greek: Ἐπιμηθεύς, which might mean "hindsight", literally "afterthinker")\n""")
     print("\tpython main.py initdb\n\t\tInitialize the database.")
-    print("\tpython main.py scan\n\t\tScan and alert for new vulnerabilities.\n")
+    print("\tpython main.py scan\n\t\tScan and alert for new vulnerabilities.")
+    print("\tpython main.py search chrome 15\n\t\tSearch for most recent CVE's.\n")
 
 # If there is an argument.
 if len(sys.argv) > 1:
@@ -114,6 +118,17 @@ if len(sys.argv) > 1:
                 _ = os.system('cls')
             else:
                 _ = os.system('clear')
+
+    # If the argument equals "search".
+    elif sys.argv[1] == "search" and len(sys.argv) > 3:
+        keyword = '%' + str(sys.argv[2]) + '%' # Define keyword to find.
+        limit = int(sys.argv[3])               # Define the amount of CVE's to find.
+        # Pull CVE's.
+        results = CVE.query().filter(CVE.description.like(keyword)).order_by(CVE.id.desc()).limit(limit).all()
+        for cve in results:
+            # Display CVE and description.
+            print('\n\t' + cve.title + '\n\t\t' + textwrap.fill(cve.description, subsequent_indent='\t\t'))
+
     else:
         help()
 else:
