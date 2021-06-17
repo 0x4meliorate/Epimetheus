@@ -123,12 +123,21 @@ if len(sys.argv) > 1:
     elif sys.argv[1] == "search" and len(sys.argv) > 3:
         keyword = '%' + str(sys.argv[2]) + '%' # Define keyword to find.
         limit = int(sys.argv[3])               # Define the amount of CVE's to find.
-        # Pull CVE's.
-        results = CVE.query().filter(CVE.description.like(keyword)).order_by(CVE.id.desc()).limit(limit).all()
-        for cve in results:
-            # Display CVE and description.
-            print('\n\t' + cve.title + '\n\t\t' + textwrap.fill(cve.description, subsequent_indent='\t\t'))
 
+        # If sys.argv[2] contains a keyword.
+        if sys.argv[2] != "*":
+            # Pull keyword CVE's.
+            results = CVE.query().filter(CVE.description.like(keyword)).order_by(CVE.id.desc()).limit(limit).all()
+            for cve in results:
+                # Display CVE and description.
+                print('\n\t' + cve.title + '\n\t\t' + textwrap.fill(cve.description, subsequent_indent='\t\t'))
+        # If sys.argv[2] is * (everything).
+        else:
+            # Pull latest CVE's.
+            results = CVE.query().filter(CVE.id).order_by(CVE.id.desc()).limit(limit).all()
+            for cve in results:
+                # Display CVE and description.
+                print('\n\t' + cve.title + '\n\t\t' + textwrap.fill(cve.description, subsequent_indent='\t\t'))
     else:
         help()
 else:
