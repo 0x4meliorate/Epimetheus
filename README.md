@@ -15,4 +15,6 @@
 
 ##### Example:
 ![poc](https://user-images.githubusercontent.com/35051260/121968145-a8ab7080-cd69-11eb-97e9-87cc094b3687.gif)
+##### Query CVE's:
+![image](https://user-images.githubusercontent.com/35051260/122322406-5317c500-cf1d-11eb-9913-63162eea7095.png)
 
